@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Add a new pet</h1>
+<form method = 'POST'>
+    {{form.hidden_tag()}}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+
+    <!-- we can add some bootstrap in later -->
+    <div class = 'container'>
+        {{field.label}}
+        {{field (class = 'form-control') }}
+
+        {% if field.errors %}
+            {% for err in field.errors %}
+            <small class = 'text-danger'> {{err}} </small>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
+    <button class = 'btn btn-success btn-large' type = 'submit'>Add a new pet</button>
+
+
+</form>
+
+{% endblock %}
+
